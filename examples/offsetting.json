@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "case_id": "offsetting",
+  "title": "Net zero hides unsupported movements",
+  "created_at": "2026-11-12T17:20:13.756273+00:00",
+  "data_sha256": "05a6930483bdfba873494f5f56acf4a9365d00dba20b8a114d6772ca0061e057",
+  "synthetic_data": true,
+  "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
+  "overview": {
+    "case_id": "offsetting",
+    "account": "6100 \u2014 Synthetic operating expenses",
+    "currency": "USD",
+    "budget_cents": 1500000,
+    "actual_cents": 1500000,
+    "delta_cents": 0,
+    "variance_percent": 0.0,
+    "gross_movement_cents": 600000,
+    "material": true,
+    "vendors": [
+      "CloudCo",
+      "OfficeCo"
+    ]
+  },
+  "supported_drivers": [],
+  "rejected_claims": [],
+  "unresolved": [
+    {
+      "vendor": "CloudCo",
+      "delta_cents": 300000,
+      "question": "Provide reconciled, verified evidence for this movement."
+    },
+    {
+      "vendor": "OfficeCo",
+      "delta_cents": -300000,
+      "question": "Provide reconciled, verified evidence for this movement."
+    }
+  ],
+  "net_explained_cents": 0,
+  "net_unexplained_cents": 0,
+  "gross_unexplained_cents": 600000,
+  "gross_evidence_coverage": 0.0,
+  "evidence": [],
+  "mode": "offline_reference_planner",
+  "audit_trail": [
+    {
+      "sequence": 1,
+      "tool": "get_overview",
+      "arguments": {},
+      "result": {
+        "case_id": "offsetting",
+        "account": "6100 \u2014 Synthetic operating expenses",
+        "currency": "USD",
+        "budget_cents": 1500000,
+        "actual_cents": 1500000,
+        "delta_cents": 0,
+        "variance_percent": 0.0,
+        "gross_movement_cents": 600000,
+        "material": true,
+        "vendors": [
+          "CloudCo",
+          "OfficeCo"
+        ]
+      }
+    },
+    {
+      "sequence": 2,
+      "tool": "get_vendor_detail",
+      "arguments": {
+        "vendor": "CloudCo"
+      },
+      "result": {
+        "vendor": "CloudCo",
+        "budget_cents": 1000000,
+        "actual_cents": 1300000,
+        "transaction_ids": [
+          "offsetting-CloudCo-budget",
+          "offsetting-CloudCo-actual"
+        ],
+        "delta_cents": 300000,
+        "documents": []
+      }
+    },
+    {
+      "sequence": 3,
+      "tool": "get_vendor_detail",
+      "arguments": {
+        "vendor": "OfficeCo"
+      },
+      "result": {
+        "vendor": "OfficeCo",
+        "budget_cents": 500000,
+        "actual_cents": 200000,
+        "transaction_ids": [
+          "offsetting-OfficeCo-budget",
+          "offsetting-OfficeCo-actual"
+        ],
+        "delta_cents": -300000,
+        "documents": []
+      }
+    },
+    {
+      "sequence": 4,
+      "tool": "submit_findings",
+      "arguments": {
+        "claims": []
+      },
+      "result": {
+        "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
+        "accepted": 0,
+        "rejected": [],
+        "unresolved_vendors": [
+          "CloudCo",
+          "OfficeCo"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "case_id": "known",
+  "title": "Documented contract increase",
+  "created_at": "2026-11-12T17:20:13.512038+00:00",
+  "data_sha256": "b1b427ed7e511c46a50dd4ccc6c5235d4b49d7bd03323d36bf293330859cb029",
+  "synthetic_data": true,
+  "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
+  "overview": {
+    "case_id": "known",
+    "account": "6100 \u2014 Synthetic operating expenses",
+    "currency": "USD",
+    "budget_cents": 1200000,
+    "actual_cents": 1500000,
+    "delta_cents": 300000,
+    "variance_percent": 25.0,
+    "gross_movement_cents": 300000,
+    "material": true,
+    "vendors": [
+      "CloudCo",
+      "OfficeCo"
+    ]
+  },
+  "supported_drivers": [
+    {
+      "vendor": "CloudCo",
+      "delta_cents": 300000,
+      "reason": "Additional contracted compute capacity for the month.",
+      "evidence_ids": [
+        "contract-1"
+      ],
+      "transaction_ids": [
+        "known-CloudCo-budget",
+        "known-CloudCo-actual"
+      ]
+    }
+  ],
+  "rejected_claims": [],
+  "unresolved": [],
+  "net_explained_cents": 300000,
+  "net_unexplained_cents": 0,
+  "gross_unexplained_cents": 0,
+  "gross_evidence_coverage": 1.0,
+  "evidence": [
+    {
+      "id": "contract-1",
+      "vendor": "CloudCo",
+      "supported_delta_cents": 300000,
+      "reason": "Additional contracted compute capacity for the month.",
+      "status": "verified",
+      "text": "Additional contracted compute capacity for the month.",
+      "provenance": "Synthetic fixture; verified is a test label, not a real approval."
+    }
+  ],
+  "mode": "offline_reference_planner",
+  "audit_trail": [
+    {
+      "sequence": 1,
+      "tool": "get_overview",
+      "arguments": {},
+      "result": {
+        "case_id": "known",
+        "account": "6100 \u2014 Synthetic operating expenses",
+        "currency": "USD",
+        "budget_cents": 1200000,
+        "actual_cents": 1500000,
+        "delta_cents": 300000,
+        "variance_percent": 25.0,
+        "gross_movement_cents": 300000,
+        "material": true,
+        "vendors": [
+          "CloudCo",
+          "OfficeCo"
+        ]
+      }
+    },
+    {
+      "sequence": 2,
+      "tool": "get_vendor_detail",
+      "arguments": {
+        "vendor": "CloudCo"
+      },
+      "result": {
+        "vendor": "CloudCo",
+        "budget_cents": 1000000,
+        "actual_cents": 1300000,
+        "transaction_ids": [
+          "known-CloudCo-budget",
+          "known-CloudCo-actual"
+        ],
+        "delta_cents": 300000,
+        "documents": [
+          "contract-1"
+        ]
+      }
+    },
+    {
+      "sequence": 3,
+      "tool": "read_evidence",
+      "arguments": {
+        "document_id": "contract-1"
+      },
+      "result": {
+        "untrusted_source": true,
+        "id": "contract-1",
+        "vendor": "CloudCo",
+        "supported_delta_cents": 300000,
+        "reason": "Additional contracted compute capacity for the month.",
+        "status": "verified",
+        "text": "Additional contracted compute capacity for the month.",
+        "provenance": "Synthetic fixture; verified is a test label, not a real approval."
+      }
+    },
+    {
+      "sequence": 4,
+      "tool": "get_vendor_detail",
+      "arguments": {
+        "vendor": "OfficeCo"
+      },
+      "result": {
+        "vendor": "OfficeCo",
+        "budget_cents": 200000,
+        "actual_cents": 200000,
+        "transaction_ids": [
+          "known-OfficeCo-budget",
+          "known-OfficeCo-actual"
+        ],
+        "delta_cents": 0,
+        "documents": []
+      }
+    },
+    {
+      "sequence": 5,
+      "tool": "submit_findings",
+      "arguments": {
+        "claims": [
+          {
+            "vendor": "CloudCo",
+            "evidence_ids": [
+              "contract-1"
+            ]
+          }
+        ]
+      },
+      "result": {
+        "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
+        "accepted": 1,
+        "rejected": [],
+        "unresolved_vendors": []
+      }
+    }
+  ]
+}

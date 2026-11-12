@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "case_id": "missing",
+  "title": "Spend without supporting evidence",
+  "created_at": "2026-11-12T17:20:13.612634+00:00",
+  "data_sha256": "c34d3aa2fd254a9eecc9fa5a2c23ddb227da0edb4429b9b7790913a975e2f75d",
+  "synthetic_data": true,
+  "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
+  "overview": {
+    "case_id": "missing",
+    "account": "6100 \u2014 Synthetic operating expenses",
+    "currency": "USD",
+    "budget_cents": 1000000,
+    "actual_cents": 1550000,
+    "delta_cents": 550000,
+    "variance_percent": 55.0,
+    "gross_movement_cents": 550000,
+    "material": true,
+    "vendors": [
+      "CloudCo",
+      "AdvisoryCo"
+    ]
+  },
+  "supported_drivers": [
+    {
+      "vendor": "CloudCo",
+      "delta_cents": 300000,
+      "reason": "Additional contracted compute capacity for the month.",
+      "evidence_ids": [
+        "contract-2"
+      ],
+      "transaction_ids": [
+        "missing-CloudCo-budget",
+        "missing-CloudCo-actual"
+      ]
+    }
+  ],
+  "rejected_claims": [],
+  "unresolved": [
+    {
+      "vendor": "AdvisoryCo",
+      "delta_cents": 250000,
+      "question": "Provide reconciled, verified evidence for this movement."
+    }
+  ],
+  "net_explained_cents": 300000,
+  "net_unexplained_cents": 250000,
+  "gross_unexplained_cents": 250000,
+  "gross_evidence_coverage": 0.5454545454545454,
+  "evidence": [
+    {
+      "id": "contract-2",
+      "vendor": "CloudCo",
+      "supported_delta_cents": 300000,
+      "reason": "Additional contracted compute capacity for the month.",
+      "status": "verified",
+      "text": "Additional contracted compute capacity for the month.",
+      "provenance": "Synthetic fixture; verified is a test label, not a real approval."
+    }
+  ],
+  "mode": "offline_reference_planner",
+  "audit_trail": [
+    {
+      "sequence": 1,
+      "tool": "get_overview",
+      "arguments": {},
+      "result": {
+        "case_id": "missing",
+        "account": "6100 \u2014 Synthetic operating expenses",
+        "currency": "USD",
+        "budget_cents": 1000000,
+        "actual_cents": 1550000,
+        "delta_cents": 550000,
+        "variance_percent": 55.0,
+        "gross_movement_cents": 550000,
+        "material": true,
+        "vendors": [
+          "CloudCo",
+          "AdvisoryCo"
+        ]
+      }
+    },
+    {
+      "sequence": 2,
+      "tool": "get_vendor_detail",
+      "arguments": {
+        "vendor": "CloudCo"
+      },
+      "result": {
+        "vendor": "CloudCo",
+        "budget_cents": 1000000,
+        "actual_cents": 1300000,
+        "transaction_ids": [
+          "missing-CloudCo-budget",
+          "missing-CloudCo-actual"
+        ],
+        "delta_cents": 300000,
+        "documents": [
+          "contract-2"
+        ]
+      }
+    },
+    {
+      "sequence": 3,
+      "tool": "read_evidence",
+      "arguments": {
+        "document_id": "contract-2"
+      },
+      "result": {
+        "untrusted_source": true,
+        "id": "contract-2",
+        "vendor": "CloudCo",
+        "supported_delta_cents": 300000,
+        "reason": "Additional contracted compute capacity for the month.",
+        "status": "verified",
+        "text": "Additional contracted compute capacity for the month.",
+        "provenance": "Synthetic fixture; verified is a test label, not a real approval."
+      }
+    },
+    {
+      "sequence": 4,
+      "tool": "get_vendor_detail",
+      "arguments": {
+        "vendor": "AdvisoryCo"
+      },
+      "result": {
+        "vendor": "AdvisoryCo",
+        "budget_cents": 0,
+        "actual_cents": 250000,
+        "transaction_ids": [
+          "missing-AdvisoryCo-budget",
+          "missing-AdvisoryCo-actual"
+        ],
+        "delta_cents": 250000,
+        "documents": []
+      }
+    },
+    {
+      "sequence": 5,
+      "tool": "submit_findings",
+      "arguments": {
+        "claims": [
+          {
+            "vendor": "CloudCo",
+            "evidence_ids": [
+              "contract-2"
+            ]
+          }
+        ]
+      },
+      "result": {
+        "status": "DRAFT_REQUIRES_HUMAN_REVIEW",
+        "accepted": 1,
+        "rejected": [],
+        "unresolved_vendors": [
+          "AdvisoryCo"
+        ]
+      }
+    }
+  ]
+}

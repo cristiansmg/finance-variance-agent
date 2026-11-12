@@ -1,0 +1,101 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Variance investigation · Spend without supporting evidence</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f3f5f4;color:#152c2b;font:16px/1.6 system-ui,sans-serif}main{max-width:1080px;margin:auto;padding:48px 24px}header{border-top:5px solid #226e63;padding:24px 0}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:#226e63}h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:14px 0}h2{font-size:21px}.badge{display:inline-block;background:#f7e9c7;padding:6px 12px;border-radius:5px;font-size:13px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin:24px 0}.card,section{background:white;border:1px solid #dbe3df;border-radius:10px;padding:24px;margin-bottom:16px}.card strong{display:block;font-size:27px}.card small,small{color:#526763}table{border-collapse:collapse;width:100%;font-size:14px}td,th{text-align:left;padding:12px 8px;border-bottom:1px solid #e3e9e6;vertical-align:top}.scroll{overflow-x:auto}details{border-bottom:1px solid #dbe3df;padding:12px 0}summary{cursor:pointer;font-weight:600}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;background:#eff3f1;padding:16px}li{margin:12px 0}footer{font-size:12px;color:#526763;overflow-wrap:anywhere}@media print{body{background:white}main{padding:0}details{break-inside:avoid}}
+</style><main><header><div class="eyebrow">Finance variance agent / research prototype</div><h1>Spend without supporting evidence</h1><p>6100 — Synthetic operating expenses · USD · Synthetic data</p><span class="badge">Draft — human review required</span></header>
+<div class="cards"><div class="card"><small>Budget</small><strong>$10,000.00</strong></div><div class="card"><small>Actual</small><strong>$15,500.00</strong></div><div class="card"><small>Net variance · actual minus budget</small><strong>$5,500.00</strong></div><div class="card"><small>Gross evidence coverage</small><strong>55%</strong></div></div>
+<section><h2>Evidence-supported drivers</h2><p>Amounts are calculated by Python. Reasons are reproduced from validated fixture evidence; they are not independently established causal facts.</p><div class="scroll"><table><thead><tr><th>Vendor</th><th>Movement</th><th>Documented explanation</th><th>Sources</th></tr></thead><tbody><tr><td>CloudCo</td><td>$3,000.00</td><td>Additional contracted compute capacity for the month.</td><td>contract-2</td></tr></tbody></table></div></section>
+<section><h2>Open questions</h2><p>Net unexplained: <strong>$2,500.00</strong> · Gross unexplained: <strong>$2,500.00</strong></p><ul><li><strong>AdvisoryCo</strong> · $2,500.00<br>Provide reconciled, verified evidence for this movement.</li></ul><p>Gross amounts expose offsetting movements that a net total can conceal.</p></section>
+<section><h2>Source evidence</h2><details><summary>contract-2 · verified</summary><p>Additional contracted compute capacity for the month.</p><small>Synthetic fixture; verified is a test label, not a real approval.</small></details></section><section><h2>Investigation trace</h2><p>Mode: <strong>offline_reference_planner</strong>. Offline mode uses deterministic rules, not an AI model.</p><details><summary>01 · get_overview</summary><pre>{
+  &quot;sequence&quot;: 1,
+  &quot;tool&quot;: &quot;get_overview&quot;,
+  &quot;arguments&quot;: {},
+  &quot;result&quot;: {
+    &quot;case_id&quot;: &quot;missing&quot;,
+    &quot;account&quot;: &quot;6100 \u2014 Synthetic operating expenses&quot;,
+    &quot;currency&quot;: &quot;USD&quot;,
+    &quot;budget_cents&quot;: 1000000,
+    &quot;actual_cents&quot;: 1550000,
+    &quot;delta_cents&quot;: 550000,
+    &quot;variance_percent&quot;: 55.0,
+    &quot;gross_movement_cents&quot;: 550000,
+    &quot;material&quot;: true,
+    &quot;vendors&quot;: [
+      &quot;CloudCo&quot;,
+      &quot;AdvisoryCo&quot;
+    ]
+  }
+}</pre></details><details><summary>02 · get_vendor_detail</summary><pre>{
+  &quot;sequence&quot;: 2,
+  &quot;tool&quot;: &quot;get_vendor_detail&quot;,
+  &quot;arguments&quot;: {
+    &quot;vendor&quot;: &quot;CloudCo&quot;
+  },
+  &quot;result&quot;: {
+    &quot;vendor&quot;: &quot;CloudCo&quot;,
+    &quot;budget_cents&quot;: 1000000,
+    &quot;actual_cents&quot;: 1300000,
+    &quot;transaction_ids&quot;: [
+      &quot;missing-CloudCo-budget&quot;,
+      &quot;missing-CloudCo-actual&quot;
+    ],
+    &quot;delta_cents&quot;: 300000,
+    &quot;documents&quot;: [
+      &quot;contract-2&quot;
+    ]
+  }
+}</pre></details><details><summary>03 · read_evidence</summary><pre>{
+  &quot;sequence&quot;: 3,
+  &quot;tool&quot;: &quot;read_evidence&quot;,
+  &quot;arguments&quot;: {
+    &quot;document_id&quot;: &quot;contract-2&quot;
+  },
+  &quot;result&quot;: {
+    &quot;untrusted_source&quot;: true,
+    &quot;id&quot;: &quot;contract-2&quot;,
+    &quot;vendor&quot;: &quot;CloudCo&quot;,
+    &quot;supported_delta_cents&quot;: 300000,
+    &quot;reason&quot;: &quot;Additional contracted compute capacity for the month.&quot;,
+    &quot;status&quot;: &quot;verified&quot;,
+    &quot;text&quot;: &quot;Additional contracted compute capacity for the month.&quot;,
+    &quot;provenance&quot;: &quot;Synthetic fixture; verified is a test label, not a real approval.&quot;
+  }
+}</pre></details><details><summary>04 · get_vendor_detail</summary><pre>{
+  &quot;sequence&quot;: 4,
+  &quot;tool&quot;: &quot;get_vendor_detail&quot;,
+  &quot;arguments&quot;: {
+    &quot;vendor&quot;: &quot;AdvisoryCo&quot;
+  },
+  &quot;result&quot;: {
+    &quot;vendor&quot;: &quot;AdvisoryCo&quot;,
+    &quot;budget_cents&quot;: 0,
+    &quot;actual_cents&quot;: 250000,
+    &quot;transaction_ids&quot;: [
+      &quot;missing-AdvisoryCo-budget&quot;,
+      &quot;missing-AdvisoryCo-actual&quot;
+    ],
+    &quot;delta_cents&quot;: 250000,
+    &quot;documents&quot;: []
+  }
+}</pre></details><details><summary>05 · submit_findings</summary><pre>{
+  &quot;sequence&quot;: 5,
+  &quot;tool&quot;: &quot;submit_findings&quot;,
+  &quot;arguments&quot;: {
+    &quot;claims&quot;: [
+      {
+        &quot;vendor&quot;: &quot;CloudCo&quot;,
+        &quot;evidence_ids&quot;: [
+          &quot;contract-2&quot;
+        ]
+      }
+    ]
+  },
+  &quot;result&quot;: {
+    &quot;status&quot;: &quot;DRAFT_REQUIRES_HUMAN_REVIEW&quot;,
+    &quot;accepted&quot;: 1,
+    &quot;rejected&quot;: [],
+    &quot;unresolved_vendors&quot;: [
+      &quot;AdvisoryCo&quot;
+    ]
+  }
+}</pre></details></section>
+<footer>Case missing · Created 2026-11-12T17:20:13.612634+00:00<br>Data SHA-256: c34d3aa2fd254a9eecc9fa5a2c23ddb227da0edb4429b9b7790913a975e2f75d<br>Educational prototype. No ERP integration, journal posting, or production approval controls.</footer></main></html>
