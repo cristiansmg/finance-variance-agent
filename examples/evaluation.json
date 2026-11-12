@@ -1,0 +1,85 @@
+{
+  "mode": "offline_reference_planner",
+  "passed": 7,
+  "total": 7,
+  "cases": [
+    {
+      "case": "known",
+      "passed": true,
+      "checks": {
+        "net": true,
+        "unexplained": true,
+        "drivers": true,
+        "draft_only": true,
+        "completed": true
+      }
+    },
+    {
+      "case": "missing",
+      "passed": true,
+      "checks": {
+        "net": true,
+        "unexplained": true,
+        "drivers": true,
+        "draft_only": true,
+        "completed": true
+      }
+    },
+    {
+      "case": "conflict",
+      "passed": true,
+      "checks": {
+        "net": true,
+        "unexplained": true,
+        "drivers": true,
+        "draft_only": true,
+        "completed": true
+      }
+    },
+    {
+      "case": "injection",
+      "passed": true,
+      "checks": {
+        "net": true,
+        "unexplained": true,
+        "drivers": true,
+        "draft_only": true,
+        "completed": true
+      }
+    },
+    {
+      "case": "offsetting",
+      "passed": true,
+      "checks": {
+        "net": true,
+        "unexplained": true,
+        "drivers": true,
+        "draft_only": true,
+        "completed": true
+      }
+    },
+    {
+      "case": "zero-budget",
+      "passed": true,
+      "checks": {
+        "net": true,
+        "unexplained": true,
+        "drivers": true,
+        "draft_only": true,
+        "completed": true
+      }
+    },
+    {
+      "case": "mismatch",
+      "passed": true,
+      "checks": {
+        "net": true,
+        "unexplained": true,
+        "drivers": true,
+        "draft_only": true,
+        "completed": true
+      }
+    }
+  ],
+  "limitation": "Offline evaluations exercise deterministic controls, not LLM reasoning or prompt-injection robustness."
+}
